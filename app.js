@@ -1,6 +1,20 @@
 console.log("app.js loaded");
+
+// 1. Handle mobile login return
+firebase.auth().getRedirectResult().then((result) => {
+  if (result.user) {
+    alert("Welcome " + result.user.displayName);
+  }
+}).catch((error) => {
+  alert("Error: " + error.message);
+});
+
+// 2. Button click triggers login redirect
 document.getElementById("loginBtn").addEventListener("click", () => {
-  console.log("button clicked");
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithRedirect(provider);
+});
+
   let jobs = [];
 
 function showPage(id){
@@ -191,5 +205,5 @@ renderJobs();
 renderJobs();
 function login() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInWithRedirect(provider);
 }
