@@ -186,3 +186,7 @@ renderJobs();
 }
 
 renderJobs();
+function login() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider);
+}
