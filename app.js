@@ -1,4 +1,7 @@
-let jobs = [];
+console.log("app.js loaded");
+document.getElementById("loginBtn").addEventListener("click", () => {
+  console.log("button clicked");
+  let jobs = [];
 
 function showPage(id){
 
