@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Fabor</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#edf4ee;
+overflow-x:hidden;
+color:#0c3b2e;
+user-select:none;
+}
+
+/* SPLASH */
+
+#splash{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top left,#2d6a4f,#081c15 70%);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+overflow:hidden;
+animation:hideSplash 1s forwards;
+animation-delay:4s;
+}
+
+#splash::before{
+content:"";
+position:absolute;
+width:420px;
+height:420px;
+background:rgba(255,255,255,0.03);
+border-radius:50%;
+top:-180px;
+left:-120px;
+}
+
+#splash::after{
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+background:rgba(255,255,255,0.03);
+border-radius:50%;
+bottom:-120px;
+right:-100px;
+}
+
+.splash-logo{
+font-family:'Baloo 2',cursive;
+font-size:72px;
+font-weight:700;
+color:white;
+position:relative;
+letter-spacing:2px;
+}
+
+/* RICE */
+
+.rice{
+position:absolute;
+top:-65px;
+left:50%;
+transform:translateX(-50%);
+animation:riceFloat 2s ease infinite alternate;
+}
+
+.rice svg{
+width:80px;
+height:80px;
+}
+
+@keyframes riceFloat{
+from{
+transform:translateX(-50%) translateY(0px);
+}
+to{
+transform:translateX(-50%) translateY(-8px);
+}
+}
+
+/* CURVE ARROW */
+
+.arrow{
+position:absolute;
+width:190px;
+height:90px;
+border-top:6px solid #95d5b2;
+border-radius:100px 100px 0 0;
+top:10px;
+left:-15px;
+transform:rotate(8deg);
+animation:curveMove 2s ease forwards;
+opacity:0;
+box-shadow:0 0 20px #52b788;
+}
+
+.arrow::after{
+content:"";
+position:absolute;
+right:-8px;
+top:-8px;
+border-top:10px solid transparent;
+border-bottom:10px solid transparent;
+border-left:16px solid #d8f3dc;
+transform:rotate(10deg);
+}
+
+@keyframes curveMove{
+
+0%{
+width:0;
+opacity:0;
+}
+
+30%{
+opacity:1;
+}
+
+100%{
+width:190px;
+opacity:1;
+}
+
+}
+
+@keyframes hideSplash{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* CONTAINER */
+
+.container{
+max-width:420px;
+margin:auto;
+padding:20px;
+padding-bottom:120px;
+}
+
+/* PAGE */
+
+.page{
+display:none;
+animation:pageSmooth 0.45s ease;
+}
+
+.show{
+display:block;
+}
+
+@keyframes pageSmooth{
+from{
+opacity:0;
+transform:translateY(25px) scale(0.98);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.logo{
+font-size:34px;
+font-family:'Baloo 2',cursive;
+font-weight:700;
+}
+
+/* TOP RIGHT LOGO */
+
+.profile-pic{
+width:58px;
+height:58px;
+border-radius:50%;
+background:linear-gradient(135deg,#2d6a4f,#52b788);
+display:flex;
+justify-content:center;
+align-items:center;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.profile-pic svg{
+width:34px;
+height:34px;
+}
+
+/* HERO */
+
+.hero{
+background:
+linear-gradient(135deg,#081c15,#1b4332);
+border-radius:38px;
+padding:28px;
+color:white;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:250px;
+height:250px;
+background:rgba(255,255,255,0.04);
+border-radius:50%;
+top:-120px;
+right:-100px;
+}
+
+.hero h1{
+font-size:34px;
+margin-bottom:12px;
+font-family:'Baloo 2',cursive;
+line-height:1.1;
+}
+
+.hero p{
+opacity:0.82;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+/* ACTIONS */
+
+.main-actions{
+display:flex;
+gap:15px;
+}
+
+.action{
+flex:1;
+padding:24px;
+border-radius:28px;
+color:white;
+transition:0.25s;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+}
+
+.action:active{
+transform:scale(0.97);
+}
+
+.action::before{
+content:"";
+position:absolute;
+width:120%;
+height:120%;
+background:rgba(255,255,255,0.08);
+top:-120%;
+left:-120%;
+transform:rotate(25deg);
+transition:0.5s;
+}
+
+.action:hover::before{
+top:120%;
+left:120%;
+}
+
+.post{
+background:linear-gradient(135deg,#40916c,#52b788);
+}
+
+.find{
+background:linear-gradient(135deg,#1b4332,#2d6a4f);
+}
+
+.action h3{
+font-size:23px;
+margin-bottom:8px;
+font-family:'Baloo 2',cursive;
+}
+
+.action p{
+font-size:13px;
+opacity:0.9;
+}
+
+/* BACK */
+
+.back{
+width:46px;
+height:46px;
+border-radius:16px;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+cursor:pointer;
+transition:0.2s;
+}
+
+.back:active{
+transform:scale(0.94);
+}
+
+/* FORM */
+
+.form-box{
+background:white;
+padding:24px;
+border-radius:35px;
+box-shadow:0 15px 30px rgba(0,0,0,0.06);
+}
+
+.form-box h2{
+margin-bottom:18px;
+font-family:'Baloo 2',cursive;
+font-size:28px;
+}
+
+input{
+width:100%;
+padding:17px;
+border:none;
+background:#edf4ee;
+border-radius:18px;
+margin-bottom:14px;
+font-size:15px;
+outline:none;
+transition:0.2s;
+}
+
+input:focus{
+transform:scale(1.01);
+}
+
+.post-btn{
+width:100%;
+padding:17px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#081c15,#2d6a4f);
+color:white;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:0.25s;
+}
+
+.post-btn:active{
+transform:scale(0.97);
+}
+
+/* LOADER */
+
+.loader{
+width:100%;
+height:4px;
+background:#d8f3dc;
+border-radius:20px;
+overflow:hidden;
+margin-top:15px;
+display:none;
+}
+
+.loader span{
+display:block;
+height:100%;
+width:40%;
+background:#2d6a4f;
+border-radius:20px;
+animation:loading 1s infinite linear;
+}
+
+@keyframes loading{
+0%{
+transform:translateX(-100%);
+}
+100%{
+transform:translateX(300%);
+}
+}
+
+/* JOBS */
+
+.section-title{
+font-size:29px;
+font-family:'Baloo 2',cursive;
+margin-bottom:18px;
+}
+
+.job-card{
+background:white;
+padding:20px;
+border-radius:32px;
+margin-bottom:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+animation:floatCard 3s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-4px);
+}
+100%{
+transform:translateY(0px);
+}
+}
+
+.job-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.job-title{
+font-size:20px;
+font-weight:700;
+}
+
+.salary{
+background:#d8f3dc;
+padding:8px 15px;
+border-radius:30px;
+font-weight:700;
+}
+
+.job-detail{
+margin-top:12px;
+font-size:14px;
+opacity:0.75;
+}
+
+.near{
+background:#d8f3dc;
+padding:7px 13px;
+border-radius:20px;
+font-size:12px;
+font-weight:700;
+display:inline-block;
+margin-top:12px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+button{
+flex:1;
+border:none;
+padding:15px;
+border-radius:18px;
+font-weight:700;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:active{
+transform:scale(0.96);
+}
+
+.accept{
+background:#081c15;
+color:white;
+box-shadow:0 0 20px rgba(45,106,79,0.25);
+}
+
+.reject{
+background:#edf4ee;
+color:#0c3b2e;
+}
+
+/* PROFILE */
+
+.profile-card{
+background:white;
+padding:25px;
+border-radius:35px;
+text-align:center;
+}
+
+.profile-big{
+width:95px;
+height:95px;
+border-radius:50%;
+background:linear-gradient(135deg,#2d6a4f,#52b788);
+margin:auto;
+margin-bottom:18px;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+width:92%;
+max-width:390px;
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(12px);
+padding:18px;
+border-radius:30px;
+display:flex;
+justify-content:space-around;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.nav-item{
+font-size:14px;
+font-weight:700;
+opacity:0.65;
+cursor:pointer;
+transition:0.2s;
+}
+
+.nav-item:active{
+transform:scale(0.94);
+opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<button onclick="login()">Login with Google</button>
+
+<!-- SPLASH -->
+
+<div id="splash">
+
+<div class="splash-logo">
+
+<div class="rice">
+
+<svg viewBox="0 0 100 100" fill="none">
+
+<path d="M50 10 C40 30 40 60 50 90"
+stroke="#d8f3dc"
+stroke-width="6"
+stroke-linecap="round"/>
+
+<path d="M50 30 C60 25 68 28 72 36"
+stroke="#95d5b2"
+stroke-width="5"
+stroke-linecap="round"/>
+
+<path d="M50 45 C62 40 72 44 76 52"
+stroke="#95d5b2"
+stroke-width="5"
+stroke-linecap="round"/>
+
+<path d="M50 60 C60 55 70 58 74 66"
+stroke="#95d5b2"
+stroke-width="5"
+stroke-linecap="round"/>
+
+</svg>
+
+</div>
+
+Fabor
+
+<div class="arrow"></div>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- HOME -->
+
+<div id="home" class="page show">
+
+<div class="header">
+
+<div class="logo">
+Fabor
+</div>
+
+<div class="profile-pic">
+
+<svg viewBox="0 0 100 100" fill="none">
+
+<path d="M50 12 C40 32 40 65 50 90"
+stroke="white"
+stroke-width="7"
+stroke-linecap="round"/>
+
+<path d="M50 32 C63 25 73 30 78 40"
+stroke="#d8f3dc"
+stroke-width="6"
+stroke-linecap="round"/>
+
+<path d="M50 48 C63 42 74 48 80 58"
+stroke="#d8f3dc"
+stroke-width="6"
+stroke-linecap="round"/>
+
+</svg>
+
+</div>
+
+</div>
+
+<div class="hero">
+
+<h1>Smart Labour Hiring</h1>
+
+<p>
+Find workers or discover labour jobs instantly with premium smart hiring.
+</p>
+
+<div class="main-actions">
+
+<div class="action post"
+onclick="showPage('farmer')">
+
+<h3>Farmer</h3>
+<p>Post labour jobs</p>
+
+</div>
+
+<div class="action find"
+onclick="showPage('labour')">
+
+<h3>Labour</h3>
+<p>Find nearby work</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FARMER -->
+
+<div id="farmer" class="page">
+
+<div class="back"
+onclick="showPage('home')">
+
+‹
+
+</div>
+
+<div class="form-box">
+
+<h2>Post Work</h2>
+
+<input id="farmerName"
+placeholder="Farmer Name">
+
+<input id="workTitle"
+placeholder="Work Title">
+
+<input id="location"
+placeholder="Location">
+
+<input id="wage"
+placeholder="Wage">
+
+<input id="workers"
+placeholder="Labours Needed">
+
+<input id="phone"
+placeholder="Phone Number">
+
+<button class="post-btn"
+onclick="postJob()">
+
+Post Job
+
+</button>
+
+<div class="loader"
+id="loader">
+
+<span></span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LABOUR -->
+
+<div id="labour" class="page">
+
+<div class="back"
+onclick="showPage('home')">
+
+‹
+
+</div>
+
+<div class="section-title">
+Available Jobs
+</div>
+
+<div id="jobsContainer"></div>
+
+</div>
+
+<!-- PROFILE -->
+
+<div id="profile" class="page">
+
+<div class="back"
+onclick="showPage('home')">
+
+‹
+
+</div>
+
+<div class="profile-card"
+id="profileContent">
+
+<div class="profile-big"></div>
+
+<h2>Create Account</h2>
+
+<input id="userName"
+placeholder="Full Name">
+
+<input id="userPhone"
+placeholder="Phone Number">
+
+<button class="post-btn"
+onclick="createAccount()">
+
+Continue
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="nav-item"
+onclick="showPage('home')">
+
+Home
+
+</div>
+
+<div class="nav-item"
+onclick="showPage('profile')">
+
+Profile
+
+</div>
+
+</div>
+
+<script>
+
+let jobs =
+JSON.parse(localStorage.getItem("faborJobs")) || [];
+
+/* PAGE */
+
+function showPage(id){
+
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("show");
+});
+
+document.getElementById(id)
+.classList.add("show");
+
+}
+
+/* SAVE */
+
+function saveJobs(){
+
+localStorage.setItem(
+"faborJobs",
+JSON.stringify(jobs)
+);
+
+}
+
+/* POST */
+
+function postJob(){
+
+let farmerName =
+document.getElementById("farmerName").value;
+
+let workTitle =
+document.getElementById("workTitle").value;
+
+let location =
+document.getElementById("location").value;
+
+let wage =
+document.getElementById("wage").value;
+
+let workers =
+document.getElementById("workers").value;
+
+let phone =
+document.getElementById("phone").value;
+
+if(
+farmerName==="" ||
+workTitle==="" ||
+location==="" ||
+wage==="" ||
+phone===""){
+alert("Fill all fields");
+return;
+}
+
+document.getElementById("loader")
+.style.display="block";
+
+setTimeout(()=>{
+
+let job={
+
+farmerName,
+workTitle,
+location,
+wage,
+workers,
+phone,
+
+time:new Date().toLocaleTimeString([],{
+hour:'2-digit',
+minute:'2-digit'
+}),
+
+date:new Date().toLocaleDateString()
+
+};
+
+jobs.push(job);
+
+saveJobs();
+
+renderJobs();
+
+document.getElementById("loader")
+.style.display="none";
+
+alert("Job Posted Successfully!");
+
+},1500);
+
+}
+
+/* RENDER */
+
+function renderJobs(){
+
+let container =
+document.getElementById("jobsContainer");
+
+container.innerHTML="";
+
+if(jobs.length===0){
+
+container.innerHTML=`
+
+<div class="job-card">
+No jobs posted yet.
+</div>
+
+`;
+
+return;
+
+}
+
+jobs.forEach((job,index)=>{
+
+let card =
+document.createElement("div");
+
+card.className="job-card";
+
+card.innerHTML=`
+
+<div class="job-top">
+
+<div class="job-title">
+${job.workTitle}
+</div>
+
+<div class="salary">
+₹${job.wage}
+</div>
+
+</div>
+
+<div class="job-detail">
+📍 ${job.location}
+</div>
+
+<div class="job-detail">
+🕒 ${job.time}
+</div>
+
+<div class="job-detail">
+📅 ${job.date}
+</div>
+
+<div class="job-detail">
+👷 ${job.workers} Labour Needed
+</div>
+
+<div class="buttons">
+
+<button class="accept"
+onclick="acceptJob(${index})">
+
+Accept
+
+</button>
+
+<button class="reject"
+onclick="rejectJob(${index})">
+
+Reject
+
+</button>
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+/* ACCEPT */
+
+function acceptJob(index){
+
+let job = jobs[index];
+
+let container =
+document.getElementById("jobsContainer");
+
+container.innerHTML=`
+
+<div class="job-card">
+
+<div class="job-title">
+${job.workTitle}
+</div>
+
+<div class="job-detail">
+👨 Farmer: ${job.farmerName}
+</div>
+
+<div class="job-detail">
+📍 ${job.location}
+</div>
+
+<div class="job-detail">
+💰 ₹${job.wage}
+</div>
+
+<div class="job-detail">
+📞 ${job.phone}
+</div>
+
+<button class="accept"
+style="margin-top:20px"
+onclick="window.location.href='tel:${job.phone}'">
+
+Call Farmer
+
+</button>
+
+</div>
+
+`;
+
+}
+
+/* REJECT */
+
+function rejectJob(index){
+
+jobs.splice(index,1);
+
+saveJobs();
+
+renderJobs();
+
+}
+
+/* ACCOUNT */
+
+function createAccount(){
+
+let name =
+document.getElementById("userName").value;
+
+let phone =
+document.getElementById("userPhone").value;
+
+if(name==="" || phone===""){
+alert("Fill all fields");
+return;
+}
+
+localStorage.setItem("faborName",name);
+localStorage.setItem("faborPhone",phone);
+
+document.getElementById("profileContent")
+.innerHTML=`
+
+<div class="profile-big"></div>
+
+<h2>${name}</h2>
+
+<p style="margin-top:10px;opacity:0.7;">
+${phone}
+</p>
+
+<div class="job-card"
+style="margin-top:20px">
+
+Welcome To Fabor
+
+</div>
+
+`;
+
+}
+
+/* LOAD */
+
+window.onload=function(){
+
+renderJobs();
+
+let savedName =
+localStorage.getItem("faborName");
+
+let savedPhone =
+localStorage.getItem("faborPhone");
+
+if(savedName && savedPhone){
+
+document.getElementById("profileContent")
+.innerHTML=`
+
+<div class="profile-big"></div>
+
+<h2>${savedName}</h2>
+
+<p style="margin-top:10px;opacity:0.7;">
+${savedPhone}
+</p>
+
+<div class="job-card"
+style="margin-top:20px">
+
+Welcome Back
+
+</div>
+
+`;
+
+}
+
+}
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
