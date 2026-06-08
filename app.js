@@ -1,3 +1,4 @@
+alert("APPJS LOADED");
 const firebaseConfig = {
   apiKey: "AIzaSyClKgfxNaBxpu5GH7PBe0sRTy5HKuN84Lk",
   authDomain: "fabor-1503.firebaseapp.com",
