@@ -16,7 +16,7 @@ function login() {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
-    .signInWithPopup(provider)
+    .signInWithRedirect(provider)
     .then((result) => {
       alert("Welcome " + result.user.displayName);
     })
