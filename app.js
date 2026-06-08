@@ -20,16 +20,11 @@ alert("Welcome " + user.displayName);
 });
 
 function login() {
-  alert("LOGIN CLICKED");
 
-  const provider = new firebase.auth.GoogleAuthProvider();
+  const provider =
+  new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      alert("Welcome " + result.user.displayName);
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
+    .signInWithRedirect(provider);
+
 }
