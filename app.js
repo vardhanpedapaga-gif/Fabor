@@ -9,6 +9,16 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged((user) => {
+
+if(user){
+
+alert("Welcome " + user.displayName);
+
+}
+
+});
+
 function login() {
   alert("LOGIN CLICKED");
 
