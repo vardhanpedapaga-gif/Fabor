@@ -1,4 +1,5 @@
 alert("APPJS LOADED");
+
 const firebaseConfig = {
   apiKey: "AIzaSyClKgfxNaBxpu5GH7PBe0sRTy5HKuN84Lk",
   authDomain: "fabor-1503.firebaseapp.com",
@@ -9,6 +10,22 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth()
+.getRedirectResult()
+.then((result) => {
+
+  if(result.user){
+    alert("Welcome " + result.user.displayName);
+  }
+
+})
+.catch((error) => {
+
+  alert(error.message);
+
+});
+
 firebase.auth().onAuthStateChanged((user) => {
 
   if(user){
@@ -16,6 +33,7 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 
 });
+
 function login() {
 
   alert("LOGIN CLICKED");
