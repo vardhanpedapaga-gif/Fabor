@@ -1128,29 +1128,16 @@ window.onload=function(){
 alert("APPJS LOADED");
 console.log("app.js loaded");
 
-const btn = document.getElementById("loginBtn");
+const firebaseConfig = {
+  apiKey: "AIzaSyClKgfxNaBxpu5GH7PBe0sRTy5HKuN84Lk",
+  authDomain: "fabor-1503.firebaseapp.com",
+  projectId: "fabor-1503",
+  storageBucket: "fabor-1503.firebasestorage.app",
+  messagingSenderId: "398403185616",
+  appId: "1:398403185616:web:bcf1d7e8ddb767cfd6a7d5"
+};
 
-if(btn){
-
-btn.addEventListener("click", () => {
-
-alert("Login button clicked");
-
-const provider =
-new firebase.auth.GoogleAuthProvider();
-
-firebase.auth()
-.signInWithRedirect(provider)
-.catch((error) => {
-
-alert(error.message);
-console.log(error);
-
-});
-
-});
-
-}
+firebase.initializeApp(firebaseConfig);
 
 firebase.auth()
 .getRedirectResult()
@@ -1336,7 +1323,25 @@ renderJobs();
 
 renderJobs();
 
-function login(){}
+function login(){
+
+const provider =
+new firebase.auth.GoogleAuthProvider();
+
+firebase.auth()
+.signInWithPopup(provider)
+.then((result)=>{
+
+alert("Welcome " + result.user.displayName);
+
+})
+.catch((error)=>{
+
+alert(error.message);
+
+});
+
+}
 
 </script>
 
