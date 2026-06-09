@@ -1096,7 +1096,18 @@ Welcome To Fabor
 /* LOAD */
 
 window.onload=function(){
+db.collection("jobs").get()
+.then((snapshot) => {
 
+  jobs = [];
+
+  snapshot.forEach((doc) => {
+    jobs.push(doc.data());
+  });
+
+  renderJobs();
+
+});
   renderJobs();
 
   let savedName =
