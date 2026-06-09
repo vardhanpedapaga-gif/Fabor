@@ -40,7 +40,7 @@ function login() {
 
   const provider =
   new firebase.auth.GoogleAuthProvider();
-
+alert("REDIRECT STARTING");
   firebase.auth()
     .signInWithRedirect(provider);
 
