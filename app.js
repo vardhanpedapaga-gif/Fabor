@@ -27,7 +27,7 @@ firebase.auth()
 });
 
 firebase.auth().onAuthStateChanged((user) => {
-
+console.log(user);
   if(user){
     alert("Welcome " + (user.displayName || user.email));
   }
