@@ -890,7 +890,13 @@ date:new Date().toLocaleDateString()
 jobs.push(job);
 
 saveJobs();
-
+db.collection("jobs").add(job)
+.then(() => {
+  console.log("Job saved to Firestore");
+})
+.catch((error) => {
+  console.error(error);
+});
 renderJobs();
 
 document.getElementById("loader")
