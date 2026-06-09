@@ -10,6 +10,9 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+firebase.auth().setPersistence(
+  firebase.auth.Auth.Persistence.LOCAL
+);
 
 firebase.auth()
 .getRedirectResult()
