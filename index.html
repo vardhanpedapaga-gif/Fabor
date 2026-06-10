@@ -905,7 +905,7 @@ renderJobs();
 document.getElementById("loader")
 .style.display="none";
 
-alert("Job Posted Successfully!");
+  showSuccess("Job Posted Successfully!");
 
 },1500);
 
@@ -1020,7 +1020,7 @@ JSON.stringify(acceptedJobs)
 db.collection("jobs").doc(job.id).update({
 accepted: job.accepted
 });
-
+showSuccess("Job Accepted");
 if(job.accepted >= Number(job.workers)){
 
 db.collection("jobs").doc(job.id).delete();
@@ -1029,7 +1029,7 @@ jobs.splice(index,1);
 
 renderJobs();
 
-alert("Job Full");
+showSuccess("Job Full");
 return;
 }
 let container =
@@ -1129,7 +1129,31 @@ Welcome To Fabor
 }
 
 /* LOAD */
+function showSuccess(message){
 
+const popup = document.createElement("div");
+
+popup.innerHTML = "✅ " + message;
+
+popup.style.position = "fixed";
+popup.style.top = "30px";
+popup.style.left = "50%";
+popup.style.transform = "translateX(-50%)";
+popup.style.background = "#2d6a4f";
+popup.style.color = "white";
+popup.style.padding = "16px 24px";
+popup.style.borderRadius = "20px";
+popup.style.zIndex = "99999";
+popup.style.fontWeight = "700";
+popup.style.boxShadow = "0 10px 25px rgba(0,0,0,0.2)";
+
+document.body.appendChild(popup);
+
+setTimeout(() => {
+popup.remove();
+}, 2000);
+
+}
 window.onload=function(){
 db.collection("jobs").get()
 .then((snapshot) => {
