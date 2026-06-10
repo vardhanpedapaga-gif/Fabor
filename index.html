@@ -968,7 +968,7 @@ ${job.workTitle}
 </div>
 
 <div class="job-detail">
-👷 ${job.workers} Labour Needed
+👷 ${Number(job.workers) - (job.accepted || 0)} Labour Needed
 </div>
 
 <div class="buttons">
@@ -1002,7 +1002,9 @@ container.appendChild(card);
 function acceptJob(index){
 
 let job = jobs[index];
-
+if(job.accepted >= Number(job.workers)){
+return;
+}
 job.accepted++;
 
 db.collection("jobs").doc(job.id).update({
