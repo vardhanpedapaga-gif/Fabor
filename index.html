@@ -876,6 +876,7 @@ workTitle,
 location,
 wage,
 workers,
+  accepted:0,
 phone,
 
 time:new Date().toLocaleTimeString([],{
@@ -891,7 +892,9 @@ jobs.push(job);
 
 saveJobs();
 db.collection("jobs").add(job)
-.then(() => {
+
+.then((docRef) => {
+    job.id = docRef.id;
   console.log("Job saved to Firestore");
 })
 .catch((error) => {
@@ -999,7 +1002,21 @@ container.appendChild(card);
 function acceptJob(index){
 
 let job = jobs[index];
+job.accepted++;
 
+if(job.accepted >= Number(job.workers)){
+
+db.collection("jobs").doc(job.id).delete();
+
+jobs.splice(index,1);
+
+renderJobs();
+
+alert("Job Full");
+
+return;
+
+}
 let container =
 document.getElementById("jobsContainer");
 
@@ -1039,6 +1056,9 @@ Call Farmer
 
 `;
 
+  db.collection("jobs").doc(job.id).update({
+accepted: job.accepted
+});
 }
 
 /* REJECT */
@@ -1102,7 +1122,10 @@ db.collection("jobs").get()
   jobs = [];
 
   snapshot.forEach((doc) => {
-    jobs.push(doc.data());
+  jobs.push({
+  id: doc.id,
+  ...doc.data()
+});
   });
 
   renderJobs();
