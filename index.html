@@ -1002,21 +1002,13 @@ container.appendChild(card);
 function acceptJob(index){
 
 let job = jobs[index];
+
 job.accepted++;
 
-if(job.accepted >= Number(job.workers)){
+db.collection("jobs").doc(job.id).update({
+accepted: job.accepted
+});
 
-db.collection("jobs").doc(job.id).delete();
-
-jobs.splice(index,1);
-
-renderJobs();
-
-alert("Job Full");
-
-return;
-
-}
 let container =
 document.getElementById("jobsContainer");
 
@@ -1041,6 +1033,10 @@ ${job.workTitle}
 </div>
 
 <div class="job-detail">
+👷 Needed: ${Number(job.workers) - (job.accepted || 0)}
+</div>
+
+<div class="job-detail">
 📞 ${job.phone}
 </div>
 
@@ -1056,10 +1052,6 @@ Call Farmer
 
 `;
 
-  db.collection("jobs").doc(job.id).update({
-accepted: job.accepted
-});
-}
 
 /* REJECT */
 
@@ -1103,7 +1095,7 @@ ${phone}
 </p>
 
 <div class="job-card"
-style="margin-top:20px">
+style="margin-top:20px">g
 
 Welcome To Fabor
 
