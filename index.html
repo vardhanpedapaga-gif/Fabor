@@ -1009,9 +1009,7 @@ if(acceptedJobs.includes(job.id)){
 alert("You already accepted this job");
 return;
 }
-if(job.accepted >= Number(job.workers)){
-return;
-}
+
 job.accepted++;
 acceptedJobs.push(job.id);
 
@@ -1022,8 +1020,18 @@ JSON.stringify(acceptedJobs)
 db.collection("jobs").doc(job.id).update({
 accepted: job.accepted
 });
-  renderJobs();
 
+if(job.accepted >= Number(job.workers)){
+
+db.collection("jobs").doc(job.id).delete();
+
+jobs.splice(index,1);
+
+renderJobs();
+
+alert("Job Full");
+return;
+}
 let container =
 document.getElementById("jobsContainer");
 
